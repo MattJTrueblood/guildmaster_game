@@ -1,0 +1,50 @@
+
+What should the game look like?
+
+
+SUPER MINIMAL PROTOTYPE:
+
+* Adventurers spawn at layer 0.  You can control the rate with some very very rudimentary UI.
+* (DONE!) Below are n layers of randomly generated rooms.  Let's say they are all square rooms with up, down, left, or right exits.
+* (DONE!) The random generation will guarantee there is a path accessible to the next layer.
+* You can scroll up and down from the top to the bottom.
+* Monsters will spawn randomly in the rooms (let's say, dragons and goblins).  You can control the rate with some very very rudimentary UI.
+* Monsters will not move on their own yet.
+* Adventurers will, on their own, wander around the dungeon.
+* When an adventurer meets a monster, they will stop and fight.  Basically, if they collide, they will freeze, and "battle".
+* battles are like this:  every second, they alternate making attacks against each other.
+* Each monster/adventurer has a health bar visible.  When the health bar goes to zero, that monster/adventurer dies.
+
+...
+
+
+<other versions todo>
+
+...
+
+
+"COMPLETE" (VAGUE) VERSION:
+
+* You are the guild master  Your goal is to clear the dungeon for some reason tbd.  But you are weak or whatever.
+* Guild management simulation / idle game.  Keyword:  ANT FARM
+* Your management decisions indirectly may affect:
+  * Adventurer spawn rate
+  * Types of adventurers (clerics, mages, fighters, etc.)
+  * How strong they are, their gear, party sizes, etc.
+  * Their level-up and job change/upgrade progressions
+  * The guild's income
+  * Monster spawn rates, patterns, etc.
+  * Dungeon events, room shuffling, randomness, etc.
+* Adventurers either take quests from the guild or free roam in the dungeon.
+* There might be some management of shops as well, mostly indirectly.  TBD how actively the guild has a presence in the stores and town.
+* You can set infrastructure to be built in the dungeon, some ideas:
+  * reinforcements to prevent certain rooms from getting shuffled during earthquakes
+  * tunnels and ladders and doors between rooms that don't have a connection currently
+  * safe rooms for adventurers to rest in
+  * teleporters between two rooms
+  * farms and gardens and mines
+  * traps and defensive structures
+  * lures for certain kinds of monsters (either to keep them away or to attract more of them)
+  * mini outposts where adventurers can report or take quests deeper in the dungeon.
+* Monsters will spawn in various ways.  idk how this will work yet.  Probably they will wander in from off the map or in dedicated spawn areas.
+* Some sort of quest management system.  example, you post them yourself and take a cut of e.g. the spoils, or you list 3rd party quests and take a cut of the reward.

@@ -24,10 +24,13 @@ end
 -- load all images used by all sprite collections
 local dungeonTilesetImage, dungeonTileMap = mymodule.loadImageTiles("dungeon_tileset.png", constants.TILE_SIZE)
 local creaturesTilesetImage, creaturesTileMap = mymodule.loadImageTiles("creatures_tileset.png", constants.TILE_SIZE)
+local miscTilesetImage, miscTileMap = mymodule.loadImageTiles("misc_tileset.png", constants.TILE_SIZE)
 
 mymodule.dungeonTilesetImage = dungeonTilesetImage
 mymodule.dungeonTileMap = dungeonTileMap 
 mymodule.creaturesTilesetImage = creaturesTilesetImage
 mymodule.creaturesTileMap = creaturesTileMap 
+mymodule.miscTilesetImage = miscTilesetImage
+mymodule.miscTileMap = miscTileMap
 
 return mymodule

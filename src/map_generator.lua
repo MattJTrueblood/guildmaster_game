@@ -84,7 +84,6 @@ end
 
 local function randomlyPopulateRoom(world, x_position, y_position)
     local roomRandom = math.random(1, 15)
-
     if(roomRandom == 1) then --- add a chest randomly
         world:addEntity(createChestAt(x_position + 48, y_position + 64))
     elseif(roomRandom >= 2 and roomRandom <= 4) then -- add a goblin randomly
@@ -98,7 +97,7 @@ function mymodule.generate(world)
     local window_width, window_height = love.graphics.getDimensions()
     local room_width = sprite_collections.collections.room1.width
     local room_height = sprite_collections.collections.room1.height
-    local buffer = 16
+    local buffer = constants.ROOM_BUFFER
     local num_rooms_x = math.floor((constants.WORLD_WIDTH - buffer) / (room_width + buffer))
     local num_rooms_y = math.floor((constants.WORLD_HEIGHT - buffer) / (room_height + buffer))
 
@@ -125,7 +124,10 @@ function mymodule.generate(world)
     end
 
     -- create graph of walkable paths for adventurers
-    local graph = {}
+    local graph = {
+        startX = buffer + 32,
+        startY = buffer - 32
+    }
 
     local function addEdge(graph, x1, y1, x2, y2)
         graph[x1] = graph[x1] or {}

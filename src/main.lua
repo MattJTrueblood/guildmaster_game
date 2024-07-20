@@ -27,8 +27,7 @@ function love.load()
     world:addSystem(render_system:createRenderSystem(camera))
     world:addSystem(monster_ai_system)
     world:addSystem(adventurer_ai_system:createAdventurerAISystem(pathsGraph))
-    world:addSystem(adventurer_spawn_system)
-
+    world:addSystem(adventurer_spawn_system:createAdventurerSpawnSystem(pathsGraph.startX, pathsGraph.startY))
 
     --finally, refresh the world once before we start the game loop just to be safes
     world:refresh()
@@ -55,4 +54,5 @@ end
 
 function love.draw()
     world:update(love.timer.getDelta(), drawSystemFilter)
+    love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
 end

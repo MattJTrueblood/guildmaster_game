@@ -53,7 +53,8 @@ local function createGoblinAt(x1, y1, x2, y2)
     return {
         position = components.position(x1, y1, 3),
         sprite = components.sprite(imageloader.creaturesTilesetImage, imageloader.creaturesTileMap[11]),
-        monsterAI = components.monsterAI(x1, y1, x2, y2, constants.MONSTER_MOVE_SPEED)
+        monsterAI = components.monsterAI(x1, y1, x2, y2),
+        targetMovement = components.targetMovement(constants.MONSTER_MOVE_SPEED)
     }
 end
 
@@ -61,7 +62,8 @@ local function createDragonAt(x1, y1, x2, y2)
     return {
         position = components.position(x1, y1, 3),
         sprite = components.sprite(imageloader.creaturesTilesetImage, imageloader.creaturesTileMap[34]),
-        monsterAI = components.monsterAI(x1, y1, x2, y2, constants.MONSTER_MOVE_SPEED)
+        monsterAI = components.monsterAI(x1, y1, x2, y2),
+        targetMovement = components.targetMovement(constants.MONSTER_MOVE_SPEED)
     }
 end
 

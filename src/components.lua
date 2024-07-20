@@ -16,12 +16,16 @@ mymodule.renderableLine = function(color, startX, startY, endX, endY)
     return {color = color, startX = startX, startY = startY, endX = endX, endY = endY}
 end
 
-mymodule.monsterAI = function(x1, y1, x2, y2, moveSpeed)
-    return {x1 = x1, y1 = y1, x2 = x2, y2 = y2, moveSpeed = moveSpeed, currentlyMoving = false, waitSeconds = 0.0}
+mymodule.monsterAI = function(x1, y1, x2, y2)
+    return {x1 = x1, y1 = y1, x2 = x2, y2 = y2, currentlyMoving = false, waitSeconds = 0.0}
 end
 
-mymodule.adventurerAI = function(moveSpeed)
-    return {lastVisited = {-99999, -99999}, moveSpeed = moveSpeed}
+mymodule.adventurerAI = function()
+    return {lastVisited = {-99999, -99999}}
+end
+
+mymodule.targetMovement = function(moveSpeed)
+    return {targetX = nil, targetY = nil, moveSpeed = moveSpeed, reachedTarget = false}
 end
 
 

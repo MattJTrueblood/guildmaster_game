@@ -3,6 +3,7 @@ local components = require("components")
 local sprite_collections = require('sprite_collections')
 local imageloader = require('image_loader')
 local Stack = require('stack')
+local constants = require("constants")
 
 local mymodule = {}
 
@@ -70,8 +71,8 @@ function mymodule.generate(world)
     local room_width = sprite_collections.collections.room1.width
     local room_height = sprite_collections.collections.room1.height
     local buffer = 16
-    local num_rooms_x = math.floor((window_width - buffer) / (room_width + buffer))
-    local num_rooms_y = math.floor((window_height - buffer) / (room_height + buffer))
+    local num_rooms_x = math.floor((constants.WORLD_WIDTH - buffer) / (room_width + buffer))
+    local num_rooms_y = math.floor((constants.WORLD_HEIGHT - buffer) / (room_height + buffer))
 
     -- first create the entrance ladder into room 0,0
     world:addEntity(createLadderAt(buffer + 32, buffer - 48))

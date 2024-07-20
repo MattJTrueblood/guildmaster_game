@@ -1,8 +1,8 @@
 local tiny = require("tiny")
-
 local render_system = require('render_system')
 local map_generator = require('map_generator')
 local camera = require('camera')
+local constants = require("constants")
 
 local drawSystemFilter = tiny.requireAll("runDuringDrawPhase")
 local updateSystemFilter = tiny.rejectAll("runDuringDrawPhase")
@@ -17,7 +17,7 @@ function love.load()
     love.graphics.setBackgroundColor(love.math.colorFromBytes(24, 20, 37))
 
     -- add all the systems for the world
-    world:addSystem(render_system)
+    world:addSystem(render_system:createRenderSystem(camera))
 
     -- add all the entities for the world
     map_generator.generate(world)
@@ -30,19 +30,17 @@ function love.update(dt)
 
     --handle input
     if love.keyboard.isDown("left") then
-        camera:move(-100 * dt, 0)
+        camera:move(-constants.CAMERA_SPEED * dt, 0)
     end
     if love.keyboard.isDown("right") then
-        camera:move(100 * dt, 0)
+        camera:move(constants.CAMERA_SPEED * dt, 0)
     end
     if love.keyboard.isDown("up") then
-        camera:move(0, -100 * dt)
+        camera:move(0, -constants.CAMERA_SPEED * dt)
     end
     if love.keyboard.isDown("down") then
-        camera:move(0, 100 * dt)
+        camera:move(0, constants.CAMERA_SPEED * dt)
     end
-
-    --print(camera.x, camera.y)
 
     world:update(dt, updateSystemFilter)
 end

@@ -54,5 +54,7 @@ end
 
 function love.draw()
     world:update(love.timer.getDelta(), drawSystemFilter)
-    love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
+    if(constants.DISPLAY_FPS_ENABLED) then
+        love.graphics.print(tostring(love.timer.getFPS()), 775, 580)
+    end
 end

@@ -17,7 +17,7 @@ end
 local function createChestAt(x, y)
     return {
         position = components.position(x, y, 2),
-        sprite = components.sprite(imageloader.tilesetImage, imageloader.tileMap[148]) -- chest sprite
+        sprite = components.sprite(imageloader.dungeonTilesetImage, imageloader.dungeonTileMap[148]) -- chest sprite
     }
 end
 
@@ -49,6 +49,22 @@ local function createLine(x1, y1, x2, y2)
     }
 end
 
+local function createGoblinAt(x1, y1, x2, y2)
+    return {
+        position = components.position(x1, y1, 3),
+        sprite = components.sprite(imageloader.creaturesTilesetImage, imageloader.creaturesTileMap[11]),
+        monsterAI = components.monsterAI(x1, y1, x2, y2, constants.MONSTER_MOVE_SPEED)
+    }
+end
+
+local function createDragonAt(x1, y1, x2, y2)
+    return {
+        position = components.position(x1, y1, 3),
+        sprite = components.sprite(imageloader.creaturesTilesetImage, imageloader.creaturesTileMap[34]),
+        monsterAI = components.monsterAI(x1, y1, x2, y2, constants.MONSTER_MOVE_SPEED)
+    }
+end
+
 local function isWithinBounds(x, y, num_rooms_x, num_rooms_y)
     return x >= 0 and x < num_rooms_x and y >= 0 and y < num_rooms_y
 end
@@ -63,6 +79,18 @@ local function shuffle(t)
     for i = #t, 2, -1 do
         local j = math.random(i)
         t[i], t[j] = t[j], t[i]
+    end
+end
+
+local function randomlyPopulateRoom(world, x_position, y_position)
+    local roomRandom = math.random(1, 15)
+
+    if(roomRandom == 1) then --- add a chest randomly
+        world:addEntity(createChestAt(x_position + 48, y_position + 64))
+    elseif(roomRandom >= 2 and roomRandom <= 4) then -- add a goblin randomly
+        world:addEntity(createGoblinAt(x_position + 16, y_position + 64, x_position + 80, y_position + 64))
+    elseif(roomRandom == 5) then -- add a dragon randomly
+        world:addEntity(createDragonAt(x_position + 16, y_position + 64, x_position + 80, y_position + 64))
     end
 end
 
@@ -83,11 +111,7 @@ function mymodule.generate(world)
             local x_position = buffer + i * (room_width + buffer)
             local y_position = buffer + j * (room_height + buffer)
             world:addEntity(createRoomAt(x_position, y_position))
-
-            --- add a chest randomly
-            if(math.random(1, 8) == 1) then
-                world:addEntity(createChestAt(x_position + 48, y_position + 64))
-            end
+            randomlyPopulateRoom(world, x_position, y_position)
         end
     end
 
@@ -99,6 +123,23 @@ function mymodule.generate(world)
             visited[i][j] = false
         end
     end
+
+    -- create graph of walkable paths for adventurers
+    local graph = {}
+
+    local function addEdge(graph, x1, y1, x2, y2)
+        graph[x1] = graph[x1] or {}
+        graph[x1][y1] = graph[x1][y1] or {}
+        graph[x1][y1][#graph[x1][y1] + 1] = {x2, y2}
+        
+        graph[x2] = graph[x2] or {}
+        graph[x2][y2] = graph[x2][y2] or {}
+        graph[x2][y2][#graph[x2][y2] + 1] = {x1, y1}
+    end
+
+    -- set up graph edges and debug line for start ladder
+    world:addEntity(createLine(buffer + 32, buffer - 32, buffer + 32, buffer + 64))
+    addEdge(graph, buffer + 32, buffer - 32, buffer + 32, buffer + 64)
 
     -- set up the DFS stack
     local stack = Stack:new()
@@ -133,7 +174,6 @@ function mymodule.generate(world)
                     -- add the hallway or ladder entities for the connection we're opening here
                     local room_x_position = buffer + x * (room_width + buffer)
                     local room_y_position = buffer + y * (room_height + buffer)
-
                     if(offset[1] == 0 and offset[2] == 1) then --down
                         world:addEntity(createLadderAt(room_x_position + 32, room_y_position + 64))
                     elseif(offset[1] == 0 and offset[2] == -1) then --up
@@ -151,12 +191,13 @@ function mymodule.generate(world)
                     end
 
                     --add debug line for fun
-                    local x1 = buffer + x * (room_width + buffer) + room_width / 2
-                    local y1 = buffer + y * (room_height + buffer) + room_height / 2
-                    local x2 = buffer + nx * (room_width + buffer) + room_width / 2
-                    local y2 = buffer + ny * (room_height + buffer) + room_height / 2
+                    local x1 = buffer + x * (room_width + buffer) + 32
+                    local y1 = buffer + y * (room_height + buffer) + 64
+                    local x2 = buffer + nx * (room_width + buffer) + 32
+                    local y2 = buffer + ny * (room_height + buffer) + 64
                     world:addEntity(createLine(x1, y1, x2, y2))
-                    
+                    addEdge(graph, x1, y1, x2, y2)
+
                     break
                 end
             end
@@ -166,7 +207,9 @@ function mymodule.generate(world)
             stack:pop()
             last_move_vertical = true
         end
-    end       
+    end
+
+    return graph
 end
 
 

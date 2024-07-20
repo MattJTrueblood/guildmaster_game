@@ -57,10 +57,10 @@ local door_grid = {
 }
 
 -- now we build the actual collections from the grids by calling the function from before
-local room1_spriteCollection = mymodule.createSpriteCollection(room1_grid, imageloader.tileMap, constants.TILE_SIZE, imageloader.tilesetImage)
-local ladder_spriteCollection = mymodule.createSpriteCollection(ladder_grid, imageloader.tileMap, constants.TILE_SIZE, imageloader.tilesetImage)
-local hallway_spriteCollection = mymodule.createSpriteCollection(hallway_grid, imageloader.tileMap, constants.TILE_SIZE, imageloader.tilesetImage)
-local door_spriteCollection = mymodule.createSpriteCollection(door_grid, imageloader.tileMap, constants.TILE_SIZE, imageloader.tilesetImage)
+local room1_spriteCollection = mymodule.createSpriteCollection(room1_grid, imageloader.dungeonTileMap, constants.TILE_SIZE, imageloader.dungeonTilesetImage)
+local ladder_spriteCollection = mymodule.createSpriteCollection(ladder_grid, imageloader.dungeonTileMap, constants.TILE_SIZE, imageloader.dungeonTilesetImage)
+local hallway_spriteCollection = mymodule.createSpriteCollection(hallway_grid, imageloader.dungeonTileMap, constants.TILE_SIZE, imageloader.dungeonTilesetImage)
+local door_spriteCollection = mymodule.createSpriteCollection(door_grid, imageloader.dungeonTileMap, constants.TILE_SIZE, imageloader.dungeonTilesetImage)
 
 -- finally, we save each collection to the module table so they can be reused at will
 mymodule.collections = {

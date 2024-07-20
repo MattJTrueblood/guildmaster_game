@@ -1,2 +1,2 @@
 @echo off
-love.exe code
+love.exe src

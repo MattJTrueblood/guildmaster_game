@@ -9,7 +9,7 @@ SUPER MINIMAL PROTOTYPE:
 * (DONE!) The random generation will guarantee there is a path accessible to the next layer.
 * You can scroll up and down from the top to the bottom.
 * Monsters will spawn randomly in the rooms (let's say, dragons and goblins).  You can control the rate with some very very rudimentary UI.
-* Monsters will not move on their own yet.
+* Monsters will not move on their own yet, or move very simply.
 * Adventurers will, on their own, wander around the dungeon.
 * When an adventurer meets a monster, they will stop and fight.  Basically, if they collide, they will freeze, and "battle".
 * battles are like this:  every second, they alternate making attacks against each other.

@@ -1,5 +1,8 @@
 local tiny = require("tiny")
 local render_system = require('render_system')
+local monster_ai_system = require('monster_ai_system')
+local adventurer_ai_system = require('adventurer_ai_system')
+local adventurer_spawn_system = require('adventurer_spawn_system')
 local map_generator = require('map_generator')
 local camera = require('camera')
 local constants = require("constants")
@@ -16,11 +19,16 @@ function love.load()
 
     love.graphics.setBackgroundColor(love.math.colorFromBytes(24, 20, 37))
 
+    -- generate the map of the world, adding all the initial entities (rooms, monsters, chests, etc.)
+    -- and returning for us a graph of walkable paths for adventurers
+    local pathsGraph = map_generator.generate(world)
+
     -- add all the systems for the world
     world:addSystem(render_system:createRenderSystem(camera))
+    world:addSystem(monster_ai_system)
+    world:addSystem(adventurer_ai_system:createAdventurerAISystem(pathsGraph))
+    world:addSystem(adventurer_spawn_system)
 
-    -- add all the entities for the world
-    map_generator.generate(world)
 
     --finally, refresh the world once before we start the game loop just to be safes
     world:refresh()

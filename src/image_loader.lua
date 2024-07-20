@@ -3,7 +3,8 @@ local constants = require("constants")
 local mymodule = {}
 
 function mymodule.loadImageTiles(file, tileSize)
-    local tilesetImage = love.graphics.newImage(file)
+    local imagePath = "assets/images/" .. file
+    local tilesetImage = love.graphics.newImage(imagePath)
     local tileWidth, tileHeight = tileSize, tileSize
     local tilesetWidth, tilesetHeight = tilesetImage:getWidth(), tilesetImage:getHeight()
     local numCols, numRows = tilesetWidth / tileWidth, tilesetHeight / tileHeight
@@ -20,9 +21,13 @@ function mymodule.loadImageTiles(file, tileSize)
     return tilesetImage, tileMap
 end
 
--- first, load all images used by all sprite collections
-local tilesetImage, tileMap = mymodule.loadImageTiles("tileset.png", constants.TILE_SIZE)
-mymodule.tilesetImage = tilesetImage
-mymodule.tileMap = tileMap
+-- load all images used by all sprite collections
+local dungeonTilesetImage, dungeonTileMap = mymodule.loadImageTiles("dungeon_tileset.png", constants.TILE_SIZE)
+local creaturesTilesetImage, creaturesTileMap = mymodule.loadImageTiles("creatures_tileset.png", constants.TILE_SIZE)
+
+mymodule.dungeonTilesetImage = dungeonTilesetImage
+mymodule.dungeonTileMap = dungeonTileMap 
+mymodule.creaturesTilesetImage = creaturesTilesetImage
+mymodule.creaturesTileMap = creaturesTileMap 
 
 return mymodule

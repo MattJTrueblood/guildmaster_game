@@ -1,4 +1,5 @@
 local tiny = require('tiny')
+local constants = require("constants")
 
 -- idk if I should do this for all systems.  For now let's just do it for the render system
 -- Instead of having the module be the prefab system, the module will have a constructor for
@@ -36,7 +37,7 @@ function mymodule:createRenderSystem(camera)
             end
 
         -- debug line.
-        elseif entity.renderableLine then
+        elseif(entity.renderableLine ~= nil and constants.DEBUG_LINES_ENABLED == true) then
             local line = entity.renderableLine
             love.graphics.setColor(line.color)
             love.graphics.line(viewX + line.startX, viewY + line.startY, viewX + line.endX, viewY + line.endY)

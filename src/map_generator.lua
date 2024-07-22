@@ -17,7 +17,10 @@ end
 local function createChestAt(x, y)
     return {
         position = components.position(x, y, 2),
-        sprite = components.sprite(imageloader.dungeonTilesetImage, imageloader.dungeonTileMap[148]) -- chest sprite
+        sprite = components.sprite(imageloader.dungeonTilesetImage, imageloader.dungeonTileMap[148]), -- chest sprite
+        boxCollision = components.boxCollision(1, 1, constants.TILE_SIZE-2, constants.TILE_SIZE-2),
+        canCollide = components.canCollide(),
+        canBePickedUp = components.canBePickedUp("Treasure")
     }
 end
 
@@ -86,7 +89,7 @@ end
 
 local function randomlyPopulateRoom(world, x_position, y_position)
     local roomRandom = math.random(1, 15)
-    if(roomRandom == 1) then --- add a chest randomly
+    if(roomRandom > 10) then --- add a chest randomly
         world:addEntity(createChestAt(x_position + 48, y_position + 64))
     elseif(roomRandom >= 2 and roomRandom <= 4) then -- add a goblin randomly
         world:addEntity(createGoblinAt(x_position + 16, y_position + 64, x_position + 80, y_position + 64))

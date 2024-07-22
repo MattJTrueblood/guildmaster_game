@@ -28,5 +28,24 @@ mymodule.targetMovement = function(moveSpeed)
     return {targetX = nil, targetY = nil, moveSpeed = moveSpeed, reachedTarget = false}
 end
 
+mymodule.boxCollision = function(x, y, width, height) -- x and y are offsets from position
+    return {x = x, y = y, width = width, height = height}
+end
+
+mymodule.canCollide = function()
+    return { collisions = {}}
+end
+
+mymodule.canPickupStuff = function()
+    return {}
+end
+
+mymodule.canBePickedUp = function(inventoryItem)
+    return { inventoryItem = inventoryItem}
+end
+
+mymodule.inventory = function()
+    return { contents = {}}
+end
 
 return mymodule

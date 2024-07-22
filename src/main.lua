@@ -4,6 +4,9 @@ local monster_ai_system = require('monster_ai_system')
 local adventurer_ai_system = require('adventurer_ai_system')
 local adventurer_spawn_system = require('adventurer_spawn_system')
 local target_movement_system = require('target_movement_system')
+local box_collision_system = require('box_collision_system')
+local item_pickup_system = require('item_pickup_system')
+
 local map_generator = require('map_generator')
 local camera = require('camera')
 local constants = require("constants")
@@ -30,6 +33,8 @@ function love.load()
     world:addSystem(adventurer_ai_system:createAdventurerAISystem(pathsGraph))
     world:addSystem(adventurer_spawn_system:createAdventurerSpawnSystem(pathsGraph.startX, pathsGraph.startY))
     world:addSystem(target_movement_system)
+    world:addSystem(box_collision_system)
+    world:addSystem(item_pickup_system)
 
     --finally, refresh the world once before we start the game loop just to be safe
     world:refresh()

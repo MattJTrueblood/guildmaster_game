@@ -12,7 +12,11 @@ local function spawnAdventurerAt(world, x, y)
 		position = components.position(x, y, 4),
 		sprite = components.sprite(imageloader.miscTilesetImage, imageloader.miscTileMap[adventurerTileMapIndices[math.random(1,#adventurerTileMapIndices)]]),
 		adventurerAI = components.adventurerAI(),
-		targetMovement = components.targetMovement(constants.ADVENTURER_MOVE_SPEED)
+		targetMovement = components.targetMovement(constants.ADVENTURER_MOVE_SPEED),
+		boxCollision = components.boxCollision(1, 1, constants.TILE_SIZE-2, constants.TILE_SIZE-2),
+		canCollide = components.canCollide(),
+		canPickupStuff = components.canPickupStuff(),
+		inventory = components.inventory()
 	}
 end
 

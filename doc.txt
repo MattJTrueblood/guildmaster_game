@@ -4,13 +4,13 @@ What should the game look like?
 
 SUPER MINIMAL PROTOTYPE:
 
-* Adventurers spawn at layer 0.  You can control the rate with some very very rudimentary UI.
+* (DONE!) Adventurers spawn at layer 0.  You can control the rate with some very very rudimentary UI.
 * (DONE!) Below are n layers of randomly generated rooms.  Let's say they are all square rooms with up, down, left, or right exits.
 * (DONE!) The random generation will guarantee there is a path accessible to the next layer.
-* You can scroll up and down from the top to the bottom.
+* (DONE!) You can scroll up and down from the top to the bottom.
 * Monsters will spawn randomly in the rooms (let's say, dragons and goblins).  You can control the rate with some very very rudimentary UI.
-* Monsters will not move on their own yet, or move very simply.
-* Adventurers will, on their own, wander around the dungeon.
+* (DONE!) Monsters will not move on their own yet, or move very simply.
+* (DONE!) Adventurers will, on their own, wander around the dungeon.
 * When an adventurer meets a monster, they will stop and fight.  Basically, if they collide, they will freeze, and "battle".
 * battles are like this:  every second, they alternate making attacks against each other.
 * Each monster/adventurer has a health bar visible.  When the health bar goes to zero, that monster/adventurer dies.

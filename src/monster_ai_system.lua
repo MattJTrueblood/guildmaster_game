@@ -1,7 +1,7 @@
 local tiny = require("tiny")
 local constants = require("constants")
 
-mymodule = tiny.processingSystem()
+local mymodule = tiny.processingSystem()
 mymodule.filter = tiny.requireAll("position", "monsterAI", "targetMovement")
 
 function mymodule:process(entity, dt)

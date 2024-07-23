@@ -7,6 +7,7 @@ local tiny = require("tiny")
 local constants = require("constants")
 local components = require("components")
 local imageloader = require("image_loader")
+local uniqueId = require("unique_id")
 
 local mymodule = {}
 
@@ -22,8 +23,12 @@ local function spawnAdventurerAt(world, x, y)
 		canCollide = components.canCollide(),
 		canPickupStuff = components.canPickupStuff(),
 		inventory = components.inventory(),
-		health = components.health(100, 100),
-		hasHealthBar = components.hasHealthBar()
+		health = components.health(20, 20),
+		hasHealthBar = components.hasHealthBar(),
+		faction = components.faction('good guys', {'bad guys'}),
+		battler = components.battler(20, 10),
+		mortal = components.mortal(),
+		id = components.id(uniqueId:generateUniqueId())
 	}
 end
 

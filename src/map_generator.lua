@@ -6,6 +6,7 @@ local sprite_collections = require('sprite_collections')
 local imageloader = require('image_loader')
 local Stack = require('stack')
 local constants = require("constants")
+local uniqueId = require("unique_id")
 
 local mymodule = {}
 
@@ -60,8 +61,14 @@ local function createGoblinAt(x1, y1, x2, y2)
         sprite = components.sprite(imageloader.creaturesTilesetImage, imageloader.creaturesTileMap[11]),
         monsterAI = components.monsterAI(x1, y1, x2, y2),
         targetMovement = components.targetMovement(constants.MONSTER_MOVE_SPEED),
-        health = components.health(100, 100),
-        hasHealthBar = components.hasHealthBar()
+        boxCollision = components.boxCollision(1, 1, constants.TILE_SIZE-2, constants.TILE_SIZE-2),
+        canCollide = components.canCollide(),
+        health = components.health(5, 5),
+        hasHealthBar = components.hasHealthBar(),
+        faction = components.faction('bad guys', {'good guys'}),
+        battler = components.battler(12, 5),
+        mortal = components.mortal(),
+        id = components.id(uniqueId:generateUniqueId())
     }
 end
 
@@ -71,8 +78,14 @@ local function createDragonAt(x1, y1, x2, y2)
         sprite = components.sprite(imageloader.creaturesTilesetImage, imageloader.creaturesTileMap[34]),
         monsterAI = components.monsterAI(x1, y1, x2, y2),
         targetMovement = components.targetMovement(constants.MONSTER_MOVE_SPEED),
-        health = components.health(100, 100),
-        hasHealthBar = components.hasHealthBar()
+        boxCollision = components.boxCollision(1, 1, constants.TILE_SIZE-2, constants.TILE_SIZE-2),
+        canCollide = components.canCollide(),
+        health = components.health(30, 30),
+        hasHealthBar = components.hasHealthBar(),
+        faction = components.faction('bad guys', {'good guys'}),
+        battler = components.battler(50, 5),
+        mortal = components.mortal(),
+        id = components.id(uniqueId:generateUniqueId())
     }
 end
 

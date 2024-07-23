@@ -85,6 +85,24 @@ mymodule.renderableBar = function(fgColor, bgColor, width, height, value)
     return { fgColor = fgColor, bgColor = bgColor, width = width, height = height, value = 1.0 }
 end
 
+-- battler entities can attack other entities.  attack and defense show how much damage they can do/take
+mymodule.battler = function(attack, defense)
+    return { attack = attack, defense = defense}
+end
 
+-- faction entities have a faction name and can battle against faction entities whose faction names are its enemies
+mymodule.faction = function(factionName, enemyFactions)
+    return { factionName = factionName, enemyFactions = enemyFactions }
+end
+
+-- id entities have a unique identifier which no other entity has (use unique_id to generate this)
+mymodule.id = function(id)
+    return { id = id }
+end
+
+-- mortal entities are deleted when their health reaches zero
+mymodule.mortal = function()
+    return {}
+end
 
 return mymodule

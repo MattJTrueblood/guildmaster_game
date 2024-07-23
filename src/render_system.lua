@@ -9,7 +9,7 @@ local mymodule = {}
 
 function mymodule:createRenderSystem(camera)
     local renderSystem = tiny.sortedProcessingSystem({runDuringDrawPhase = true, camera = camera})
-    renderSystem.filter = tiny.requireAll('position', tiny.requireAny('sprite', 'spriteCollection', 'renderableLine'))
+    renderSystem.filter = tiny.requireAll('position', tiny.requireAny('sprite', 'spriteCollection', 'renderableLine', 'renderableBar'))
 
     -- handle z levels (default position.z = 0)
     function renderSystem:compare(e1, e2)
@@ -42,7 +42,18 @@ function mymodule:createRenderSystem(camera)
             love.graphics.setColor(line.color)
             love.graphics.line(viewX + line.startX, viewY + line.startY, viewX + line.endX, viewY + line.endY)
             love.graphics.setColor(1, 1, 1) -- reset to white so it doesn't screw up the next render
+        
+        -- renderable bar
+        elseif(entity.renderableBar ~= nil) then
+            local bar = entity.renderableBar
+            love.graphics.setColor(bar.bgColor)
+            love.graphics.rectangle("fill", position.x, position.y, bar.width, bar.height)
+            love.graphics.setColor(bar.fgColor)
+            love.graphics.rectangle("fill", position.x, position.y, math.floor(bar.width * bar.value), bar.height)
+            love.graphics.setColor(1, 1, 1)
         end
+
+
     end
 
     return renderSystem

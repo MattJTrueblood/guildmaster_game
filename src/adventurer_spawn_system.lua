@@ -16,7 +16,9 @@ local function spawnAdventurerAt(world, x, y)
 		boxCollision = components.boxCollision(1, 1, constants.TILE_SIZE-2, constants.TILE_SIZE-2),
 		canCollide = components.canCollide(),
 		canPickupStuff = components.canPickupStuff(),
-		inventory = components.inventory()
+		inventory = components.inventory(),
+		health = components.health(100, 100),
+		hasHealthBar = components.hasHealthBar()
 	}
 end
 

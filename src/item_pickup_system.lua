@@ -8,11 +8,6 @@ function mymodule:process(entity, dt)
 	for _, collidingEntity in ipairs(entity.canCollide.collisions) do
         if(collidingEntity.canBePickedUp ~= nil) then
             table.insert(entity.inventory.contents, collidingEntity.canBePickedUp.inventoryItem)
-            print("someone picked up ", collidingEntity.canBePickedUp.inventoryItem)
-            print("  current inventory:")
-            for _, item in ipairs(entity.inventory.contents) do
-                print(item)
-            end
             table.insert(self.toRemove, collidingEntity)
         end
     end

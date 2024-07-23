@@ -13,7 +13,6 @@ function mymodule:process(entity, dt)
 	for _, other in ipairs(self.entities) do
         if entity ~= other and self.checkCollision(entity, other) then
             table.insert(entity.canCollide.collisions, other)
-            print("collision!!!")
         end
     end
 end

@@ -48,4 +48,26 @@ mymodule.inventory = function()
     return { contents = {}}
 end
 
+mymodule.attachedTo = function(entity, xOffset, yOffset)
+    return { attachedToEntity = entity, xOffset = xOffset, yOffset = yOffset}
+end
+
+mymodule.hasAttachments = function()
+    return { attachedEntities = {} }
+end
+
+mymodule.health = function(current, max)
+    return { current = current, max = max}
+end
+
+mymodule.hasHealthBar = function()
+    return { healthBarEntity = nil }
+end
+
+mymodule.renderableBar = function(fgColor, bgColor, width, height, value)
+    return { fgColor = fgColor, bgColor = bgColor, width = width, height = height, value = 1.0 }
+end
+
+
+
 return mymodule

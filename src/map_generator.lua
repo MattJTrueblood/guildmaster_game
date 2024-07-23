@@ -1,3 +1,5 @@
+-- this module helps generate the entire map, including all the entities in it and their initial behavior
+
 local tiny = require("tiny")
 local components = require("components")
 local sprite_collections = require('sprite_collections')

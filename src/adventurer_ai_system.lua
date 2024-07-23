@@ -1,3 +1,9 @@
+-- adventurer ai system handles the behavior of adventurers.  The adventurers follow a pathsGraph,
+-- which is why this function uses a constructor instead of the module itself being the system.
+-- Adventurers walk towards their target until they reach it.
+-- when they reach their new target, they search for any paths that connect to the node at that point.
+-- they try not to go towards the previous node unless there are no other connections.
+
 local tiny = require('tiny')
 local constants = require("constants")
 

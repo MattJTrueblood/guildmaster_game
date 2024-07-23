@@ -1,3 +1,6 @@
+-- this system sets up all of the spriteCollections that should never change during the game.
+-- for example, the sprites that make up a room, or a ladder, or a hallway.
+
 local components = require("components")
 local constants = require("constants")
 local imageloader = require("image_loader")

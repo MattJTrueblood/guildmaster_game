@@ -1,3 +1,8 @@
+-- Render System handles actually drawing objects in the world to the screen
+-- Various types of rendering are supported -- sprites, collections of sprites, lines, etc.
+-- Rendering occurs during the draw phase, hence the runDuringDrawPhase flag.
+-- Because it needs to use the camera in its constructor, it uses a custom function rather than the module being the system itself
+
 local tiny = require('tiny')
 local constants = require("constants")
 

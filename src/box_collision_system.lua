@@ -1,3 +1,7 @@
+-- box collision system handles collision among all collidable entities with collision bounding boxes defined
+-- it has to check every collidable entity against every other collidable entity.
+-- It then keeps updated a list of entities each entity is currently colliding with in the entity.canCollide.collisions table
+
 local tiny = require("tiny")
 
 local mymodule = tiny.processingSystem()

@@ -1,3 +1,6 @@
+-- healthbar system attaches a health bar entity to any entity with the health and hasHealthBar components
+-- it then keeps the health bar entity updated with the entity's current health 
+
 local tiny = require("tiny")
 local components = require("components")
 local constants = require("constants")

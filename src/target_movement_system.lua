@@ -1,3 +1,7 @@
+-- target movement system handles entities that move at a set speed towards a target point in the world
+-- Once they arrive at the target, they set their reachedTarget flag to true.
+-- If a new target is set, this system will set the reachedTarget variable to false and start moving again
+
 local tiny = require("tiny")
 local constants = require("constants")
 

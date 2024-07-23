@@ -1,3 +1,8 @@
+-- this system handles items that things can pick up and add to their inventory
+-- when a canBePickedUp entity is collided with, the contents of its canBePickedUp.inventoryItem are added to the
+-- contents table in the inventory component of the entity that picked it up
+-- Then, the entity that was picked up is deleted during the postProcess phase.
+
 local tiny = require("tiny")
 
 local mymodule = tiny.processingSystem()

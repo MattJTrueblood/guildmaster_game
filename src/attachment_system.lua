@@ -1,3 +1,7 @@
+-- Attachment system handles entities that are meant to move alongside other entities
+-- e.g. status effect icons, health bars, etc.
+-- it moves the attached items when their parent moves, and handles the parent's "hasAttachment" component and its table
+
 local tiny = require("tiny")
 local components = require("components")
 

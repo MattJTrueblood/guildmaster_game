@@ -1,3 +1,6 @@
+-- attachment cleanup system handles an edge case in attachment system
+-- it deletes any attached entities if the parent entity itself is deleted.
+
 local tiny = require("tiny")
 
 local mymodule = tiny.system()

@@ -1,3 +1,7 @@
+-- item loader currently manually loads all of the images used by the game and stores the tilemaps and image
+-- objects in the module.
+-- TODO:  later, find a more generalizeable solution for this.  This is ok for now though
+
 local constants = require("constants")
 
 local mymodule = {}

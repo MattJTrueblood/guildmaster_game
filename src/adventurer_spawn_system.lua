@@ -1,3 +1,8 @@
+-- adventurer spawn system spawns new adventurer entities at the starting point.  Because it requires a spawnpoint x and y,
+-- we use a custom constructor instead of the module itself being the system (similar to what the render system does).
+-- The render spawn system creates adventurers every constants.ADVENTURER_SPAWN_DELAY seconds.
+-- The adventurers have a randomized appearance and all the components necessary to act on their own
+
 local tiny = require("tiny")
 local constants = require("constants")
 local components = require("components")

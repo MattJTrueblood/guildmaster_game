@@ -1,3 +1,8 @@
+-- this system controls the behavior of monsters in the dungeon
+-- currently, they wander between two locations.  After waiting for waitSeconds seconds, the monster
+-- will choose a location between those two points and start walking towards that point.
+-- once it reaches it, it will start waiting again.
+
 local tiny = require("tiny")
 local constants = require("constants")
 
